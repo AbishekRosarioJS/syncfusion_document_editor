@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="column">
+    <button (click)="showListView()">Document List View</button>
+
+    <div *ngIf="showList">
+      <ul>
+        <li *ngFor="let Customer of documents" (click)="handleListItemClick(Customer)">
+          {{ Customer.DocName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div *ngIf="showList && nestedList.length > 0">
+      <ul>
+        <ng-container *ngFor="let nestedItem of nestedList">
+          <li #nestedItemRef (click)="handleNestedItemClick(nestedItem.HeaderName)">
+            {{ nestedItem.HeaderName }}
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div *ngIf="showTextArea">
+    <textarea [(ngModel)]="selectedHeaderValue" readonly rows="10" cols="80" *ngIf="showTextArea"  [disabled]="!showTextArea">{{ selectedHeaderValue }}</textarea>
+    <button class="close-button" (click)="closeTextArea()">&#10006;</button>
+  </div>
+  </div>
+</div>
+
+
+<ejs-documenteditorcontainer #document_editor height="600px" style="display:block" [enableToolbar]=true
+    [toolbarItems]="toolbarItems" (toolbarClick)="onToolbarClick($event)">
+</ejs-documenteditorcontainer>
+
+

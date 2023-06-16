@@ -1,0 +1,10 @@
+.heading{
+    text-align: center;
+    color: #9376E0;
+    margin-top: 260px;
+}
+
+h1::heading {
+ color: #ff0000;
+  font-size: xx-large;
+}
